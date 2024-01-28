@@ -1,13 +1,13 @@
-package com.ecommecer.store;
+package br.com.sousa.srv.ecommercestoreapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class EcommerceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(EcommerceApplication.class, args);
 	}
 
 }
