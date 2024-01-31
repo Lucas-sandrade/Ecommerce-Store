@@ -4,17 +4,15 @@ import br.com.sousa.srv.ecommercestoreapi.domain.model.Products;
 import br.com.sousa.srv.ecommercestoreapi.domain.service.ProductsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/v1/api/customer")
+@RequestMapping(path = "/v1/api/products")
 @RequiredArgsConstructor
 public class ProductsController {
+
     @Autowired
     private final ProductsService productsService;
 
@@ -23,7 +21,7 @@ public class ProductsController {
         return  productsService.getAll();
     }
     @PostMapping
-    public Products add(Products products){
+    public Products add(@RequestBody Products products){
         return productsService.create(products);
     }
 
