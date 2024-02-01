@@ -34,6 +34,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void create(Customer customer) {
+        customer.getAddress().forEach(address -> {
+            address.setCustomer(customer);
+        });
         repository.save(customer);
     }
 }
