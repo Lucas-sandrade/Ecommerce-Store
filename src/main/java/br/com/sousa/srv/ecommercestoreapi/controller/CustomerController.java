@@ -3,10 +3,8 @@ package br.com.sousa.srv.ecommercestoreapi.controller;
 import br.com.sousa.srv.ecommercestoreapi.domain.model.Customer;
 import br.com.sousa.srv.ecommercestoreapi.domain.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,17 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Customer get(@PathVariable Long id) {
         return customerService.get(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody Customer customer) {
+        customerService.create(customer);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        customerService.delete(id);
     }
 
 }
