@@ -1,5 +1,6 @@
 package br.com.sousa.srv.ecommercestoreapi.domain.service.impl;
 
+import br.com.sousa.srv.ecommercestoreapi.domain.exception.ProductsNotFoundException;
 import br.com.sousa.srv.ecommercestoreapi.domain.model.Products;
 import br.com.sousa.srv.ecommercestoreapi.domain.repository.ProductsRepository;
 import br.com.sousa.srv.ecommercestoreapi.domain.service.ProductsService;
@@ -16,6 +17,7 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Autowired
     private final ProductsRepository productsRepository;
+
     @Override
     public List<Products> getAll() {
         return productsRepository.findAll();
@@ -30,8 +32,13 @@ public class ProductsServiceImpl implements ProductsService {
     public Products create(Products products) {
         return productsRepository.save(products);
     }
+
     @Override
-    public void delete(Long id) {
+    public void Delete(Long id) {
+        if (!productsRepository.existsById(id)) {
+            throw new ProductsNotFoundException(id);
+        }
         productsRepository.deleteById(id);
+
     }
 }
